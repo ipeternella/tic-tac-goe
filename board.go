@@ -8,20 +8,22 @@ import (
 )
 
 type Board struct {
-	fields [3][3]string
+	fields [][]string
 }
 
-/**
-Returns a new Board.
-*/
-func CreateBoard() *Board {
-	var emptyBoard [3][3]string
+// Creates a new game board
+func CreateGameBoard(boardSize int) *Board {
 	k := 1
 
-	for i, _ := range emptyBoard {
+	// initializes slices
+	emptyBoard := make([][]string, boardSize)
+	for i := range emptyBoard {
+		emptyBoard[i] = make([]string, boardSize)
+	}
 
-		for j, _ := range emptyBoard[i] {
-
+	// fills slice dynamically
+	for i := range emptyBoard {
+		for j := range emptyBoard[i] {
 			emptyBoard[i][j] = strconv.FormatInt(int64(k), 10)
 			k++
 		}
