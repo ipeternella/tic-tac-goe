@@ -11,7 +11,7 @@ type Board struct {
 	fields [][]string
 }
 
-// Creates a new game board
+// Creates a new game board of a given boardSize. Boards are square matrices.
 func CreateGameBoard(boardSize int) *Board {
 	k := 1
 
@@ -32,14 +32,11 @@ func CreateGameBoard(boardSize int) *Board {
 	return &Board{fields: emptyBoard}
 }
 
-/**
-Prints a board.
-*/
+// Prints the game board with its actual game state.
 func PrintBoard(board *Board) {
 
-	for i, _ := range board.fields {
-
+	// traverses each row
+	for i := range board.fields {
 		fmt.Printf(" %s | %s | %s \n", board.fields[i][0], board.fields[i][1], board.fields[i][2])
-
 	}
 }
