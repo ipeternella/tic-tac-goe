@@ -57,9 +57,9 @@ func getRowString(board *Board, rowNumber int) string {
 }
 
 // Prints the game board with its actual game state
-func PrintBoard(board *Board) {
+func PrintBoard(board *Board, boardHorizontalSeparator string) {
 	totalHorizontalSeparators := 4*len(board.fields) - 1 // 3r + (r - 1) = 4r - 1
-	horizontalBars := strings.Repeat("-", totalHorizontalSeparators)
+	horizontalBars := strings.Repeat(boardHorizontalSeparator, totalHorizontalSeparators)
 
 	// traverses each row
 	for rowNumber := range board.fields {

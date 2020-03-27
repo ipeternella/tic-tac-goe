@@ -15,7 +15,7 @@ func main() {
 	log.Info().Msgf("Starting the game...")
 
 	gameBoard := tictacgoe.CreateGameBoard(settings.BoardSize)
-	tictacgoe.PrintBoard(gameBoard)
+	tictacgoe.PrintBoard(gameBoard, settings.BoardHorizontalSeparator)
 
 	log.Info().Msgf("Closing the game application...")
 }
