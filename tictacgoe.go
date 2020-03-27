@@ -28,7 +28,13 @@ func CreateGameBoard(boardSize int) *Board {
 	// fills slice dynamically
 	for i := range emptyBoard {
 		for j := range emptyBoard[i] {
-			emptyBoard[i][j] = strconv.FormatInt(int64(k), 10)
+
+			// single digit numbers require especial treatment
+			if k <= 9 {
+				emptyBoard[i][j] = "0" + strconv.FormatInt(int64(k), 10)
+			} else {
+				emptyBoard[i][j] = strconv.FormatInt(int64(k), 10)
+			}
 			k++
 		}
 	}
@@ -48,7 +54,7 @@ func getRowString(board *Board, rowNumber int) string {
 		if i <= len(row)-2 {
 			rowForStdOut += row[i] + " | "
 		} else {
-			rowForStdOut += row[i]
+			rowForStdOut += row[i] + " "
 		}
 
 	}
@@ -58,7 +64,7 @@ func getRowString(board *Board, rowNumber int) string {
 
 // Prints the game board with its actual game state
 func PrintBoard(board *Board, boardHorizontalSeparator string) {
-	totalHorizontalSeparators := 4*len(board.fields) - 1 // 3r + (r - 1) = 4r - 1
+	totalHorizontalSeparators := 5*len(board.fields) - 1 // 4r + (r - 1) = 5r - 1
 	horizontalBars := strings.Repeat(boardHorizontalSeparator, totalHorizontalSeparators)
 
 	// traverses each row
