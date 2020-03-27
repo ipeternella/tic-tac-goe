@@ -12,10 +12,10 @@ func main() {
 	// sets the application up
 	settings.SetupApplication()
 
-	log.Info().Msgf("Starting the game...")
+	log.Debug().Msgf("Starting the game...")
 
 	gameBoard := tictacgoe.CreateGameBoard(settings.BoardSize)
 	tictacgoe.PrintBoard(gameBoard, settings.BoardHorizontalSeparator)
 
-	log.Info().Msgf("Closing the game application...")
+	log.Debug().Msgf("Closing the game application...")
 }

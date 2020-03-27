@@ -21,7 +21,7 @@ var loggingLevelMap = map[string]zerolog.Level{
 	"debug": zerolog.DebugLevel,
 }
 
-const loggingLevel string = "debug"
+const loggingLevel string = "info"
 
 // Sets up game properties
 func setupGame() {}
@@ -36,8 +36,8 @@ func setupLogs(loggingLevel string) {
 func SetupApplication() {
 	setupLogs(loggingLevel)
 
-	log.Info().Msg("Booting the application...")
+	log.Debug().Msg("Booting the application...")
 	setupGame()
 
-	log.Info().Msg("Application has been successfully set up!")
+	log.Debug().Msg("Application has been successfully set up!")
 }
