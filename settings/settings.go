@@ -8,7 +8,8 @@ import (
 
 // Game properties
 const (
-	BoardSize int = 3
+	BoardHorizontalSeparator string = "-"
+	BoardSize                int    = 3
 )
 
 // Logging configs

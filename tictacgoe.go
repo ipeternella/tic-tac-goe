@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"github.com/rs/zerolog/log"
 	"strconv"
+	"strings"
 )
 
 type Board struct {
@@ -36,11 +37,38 @@ func CreateGameBoard(boardSize int) *Board {
 	return &Board{fields: emptyBoard}
 }
 
+// internal function used to print rows
+func getRowString(board *Board, rowNumber int) string {
+	var row = board.fields[rowNumber]
+	rowForStdOut := " "
+
+	for i := range row {
+
+		// traverses row EXCEPT last element
+		if i <= len(row)-2 {
+			rowForStdOut += row[i] + " | "
+		} else {
+			rowForStdOut += row[i]
+		}
+
+	}
+
+	return rowForStdOut
+}
+
 // Prints the game board with its actual game state
 func PrintBoard(board *Board) {
+	totalHorizontalSeparators := 4*len(board.fields) - 1 // 3r + (r - 1) = 4r - 1
+	horizontalBars := strings.Repeat("-", totalHorizontalSeparators)
 
 	// traverses each row
-	for i := range board.fields {
-		fmt.Printf(" %s | %s | %s \n", board.fields[i][0], board.fields[i][1], board.fields[i][2])
+	for rowNumber := range board.fields {
+		// prints each row of the board
+		fmt.Println(getRowString(board, rowNumber))
+
+		// prints the horizontal line EXCEPT for the last row
+		if rowNumber <= len(board.fields)-2 {
+			fmt.Println(horizontalBars)
+		}
 	}
 }
