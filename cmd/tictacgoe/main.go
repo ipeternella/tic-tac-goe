@@ -2,12 +2,20 @@
 package main
 
 import (
-	board "github.com/IgooorGP/tic-tac-goe"
-	settings "github.com/IgooorGP/tic-tac-goe"
+	tictacgoe "github.com/IgooorGP/tic-tac-goe"
+	"github.com/IgooorGP/tic-tac-goe/settings"
+	"github.com/rs/zerolog/log"
 )
 
 // Main game loop
 func main() {
-	gameBoard := board.CreateGameBoard(settings.BoardSize)
-	board.PrintBoard(gameBoard)
+	// sets the application up
+	settings.SetupApplication()
+
+	log.Info().Msgf("Starting the game...")
+
+	gameBoard := tictacgoe.CreateGameBoard(settings.BoardSize)
+	tictacgoe.PrintBoard(gameBoard)
+
+	log.Info().Msgf("Closing the game application...")
 }

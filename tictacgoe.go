@@ -1,9 +1,10 @@
 // Package board contains the board struct used to hold the game's state. Moreover,
 // functions that operate on the board are also available.
-package board
+package tictacgoe
 
 import (
 	"fmt"
+	"github.com/rs/zerolog/log"
 	"strconv"
 )
 
@@ -13,6 +14,8 @@ type Board struct {
 
 // Creates a new game board of a given boardSize. Boards are square matrices.
 func CreateGameBoard(boardSize int) *Board {
+	log.Info().Msgf("Creating a new game board with %d rows and cols...", boardSize)
+
 	k := 1
 
 	// initializes slices
@@ -29,10 +32,11 @@ func CreateGameBoard(boardSize int) *Board {
 		}
 	}
 
+	log.Info().Msgf("Initialized board. Returning board...")
 	return &Board{fields: emptyBoard}
 }
 
-// Prints the game board with its actual game state.
+// Prints the game board with its actual game state
 func PrintBoard(board *Board) {
 
 	// traverses each row
