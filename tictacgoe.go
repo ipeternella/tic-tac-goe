@@ -79,3 +79,22 @@ func PrintBoard(board *Board, boardHorizontalSeparator string) {
 		}
 	}
 }
+
+// Converts a validated field position, e.g. 1, to a (row, col) for 2d matrices notation
+// Example: 1 --> (0, 0)
+func GetBoardRowAndCol(validatedFieldPosition int, board *Board) (int, int) {
+	totalRows := len(board.fields)
+	totalCols := len(board.fields)
+
+	row := validatedFieldPosition / totalRows // truncates decimals (integer division)
+	col := validatedFieldPosition % totalCols
+
+	return row, col
+}
+
+// Updates the game state with a new player's mark at a given board position
+func UpdateGameState(playerMark string, validatedFieldPosition int, board *Board) {
+	row, col := GetBoardRowAndCol(validatedFieldPosition, board)
+
+	board.fields[row][col] = playerMark
+}
