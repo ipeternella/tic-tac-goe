@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"io"
+	"strings"
 )
 
 // Stores user input bytes that from stdin, in a buffer that is read
@@ -13,7 +14,7 @@ func GetUserInput(stdIn io.Reader) string {
 	inputBuffer := bufio.NewReader(stdIn)
 	text, _ := inputBuffer.ReadString('\n')
 
-	return text
+	return strings.TrimSuffix(text, "\n")
 
 }
 
@@ -27,7 +28,7 @@ func IsUserInputValid(fieldPosition int, board *Board) (bool, string) {
 
 	// outcomes
 	gameRejectionOutput := ""
-	evaluationResult := false
+	evaluationResult := true
 
 	// assertion if the spot is taken
 	if false {
@@ -36,10 +37,12 @@ func IsUserInputValid(fieldPosition int, board *Board) (bool, string) {
 
 	if fieldPosition < minAllowedValue {
 		gameRejectionOutput = fmt.Sprintf("Oops! The lowest allowed spot value for your move is %d!", minAllowedValue)
+		evaluationResult = false
 	}
 
 	if fieldPosition > maxAllowedValue {
 		gameRejectionOutput = fmt.Sprintf("Oops! The highest allowed spot value for your move is %d!", maxAllowedValue)
+		evaluationResult = false
 	}
 
 	return evaluationResult, gameRejectionOutput
