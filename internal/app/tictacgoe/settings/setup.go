@@ -2,9 +2,10 @@ package settings
 
 import (
 	"errors"
+	"os"
+
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
-	"os"
 )
 
 // Sets up game properties

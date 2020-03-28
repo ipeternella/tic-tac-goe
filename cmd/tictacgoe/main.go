@@ -2,8 +2,15 @@
 package main
 
 import (
-	tictacgoe "github.com/IgooorGP/tic-tac-goe"
-	"github.com/IgooorGP/tic-tac-goe/settings"
+	"os"
+	"strconv"
+
+	"github.com/IgooorGP/tic-tac-goe/internal/app/tictacgoe/repl"
+
+	"github.com/IgooorGP/tic-tac-goe/internal/app/tictacgoe/gamelogic"
+
+	"github.com/IgooorGP/tic-tac-goe/internal/app/tictacgoe/settings"
+
 	"github.com/rs/zerolog/log"
 )
 
@@ -14,8 +21,23 @@ func main() {
 
 	log.Debug().Msgf("Starting the game...")
 
-	gameBoard := tictacgoe.CreateGameBoard(settings.BoardSize)
-	tictacgoe.PrintBoard(gameBoard, settings.BoardHorizontalSeparator)
+	gameBoard := gamelogic.CreateGameBoard(settings.BoardSize)
+	gamelogic.PrintBoard(gameBoard, settings.BoardHorizontalSeparator)
+
+	userInput := repl.GetUserInput(os.Stdin)
+	userFieldPositionInput, intConversionError := strconv.Atoi(userInput)
+
+	if intConversionError != nil {
+		log.Fatal().Msg("Input was not an integer!")
+	}
+
+	if isValid, rejectionMsg := gamelogic.IsUserInputValid(userFieldPositionInput, gameBoard); !isValid {
+		log.Fatal().Msg(rejectionMsg)
+	}
+
+	// updates game and re-prints the board
+	gamelogic.UpdateGameState("IG", userFieldPositionInput, gameBoard)
+	gamelogic.PrintBoard(gameBoard, settings.BoardHorizontalSeparator)
 
 	log.Debug().Msgf("Closing the game application...")
 }

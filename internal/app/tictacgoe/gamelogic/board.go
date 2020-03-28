@@ -1,6 +1,6 @@
 // Package board contains the board struct used to hold the game's state. Moreover,
 // functions that operate on the board are also available.
-package tictacgoe
+package gamelogic
 
 import (
 	"fmt"

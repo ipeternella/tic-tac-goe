@@ -1,4 +1,4 @@
-package tictacgoe
+package gamelogic
 
 import (
 	"reflect"
