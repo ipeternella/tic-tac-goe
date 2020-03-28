@@ -1,4 +1,18 @@
-# Tic Tac GOe!
+# Tic Tac Goe - A terminal tic tac toe game
+
+```bash
++ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - +  
+|                       WELCOME :)!                         |
+|    TT | II | CC                                           |
+|   --------------    ____   ____    ____                   |
+|    TT | AA | CC       | i c  | a c  | o e                 |
+|   --------------              Terminal 1.0                |
+|    GG | OO | EE                                           |
+|                                                           |
+|   This program is licensed under the MIT License.         |
+|   >> Press ANY KEY to begin                               |
++ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - +
+```
 
 A terminal Tic Tac Toe game implemented in GO to discover the language!
 
