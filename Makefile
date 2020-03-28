@@ -16,4 +16,4 @@ build:
 	$(GOBUILD) -o $(BINARY_OUTPUT_NAME) -v cmd/tictacgoe/main.go
 
 test: 
-	$(GOTEST) ./tests/... -cover ./tests -v
+	$(GOTEST) ./... -cover ./... -v
