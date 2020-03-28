@@ -3,7 +3,6 @@ package settings
 
 import (
 	"github.com/rs/zerolog"
-	"github.com/rs/zerolog/log"
 )
 
 // Game properties
@@ -22,22 +21,3 @@ var loggingLevelMap = map[string]zerolog.Level{
 }
 
 const loggingLevel string = "info"
-
-// Sets up game properties
-func setupGame() {}
-
-// Setups the logs of the application: level, format, etc.
-func setupLogs(loggingLevel string) {
-	level := loggingLevelMap[loggingLevel]
-	zerolog.SetGlobalLevel(level)
-}
-
-// Setups the the application
-func SetupApplication() {
-	setupLogs(loggingLevel)
-
-	log.Debug().Msg("Booting the application...")
-	setupGame()
-
-	log.Debug().Msg("Application has been successfully set up!")
-}
