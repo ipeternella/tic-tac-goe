@@ -19,7 +19,7 @@ func TestGetUserInputFromStdIn(t *testing.T) {
 		return
 	}
 
-	input := GetUserInput(&buffer)
+	input := ReadUserInput(&buffer)
 
 	if input != expectedInput {
 		t.Errorf("Unexpected input. actual: %s, expected: %s", input, expectedInput)
