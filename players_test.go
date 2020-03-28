@@ -29,10 +29,10 @@ func TestGetUserInputFromStdIn(t *testing.T) {
 
 func TestIsUserInputValidMinThresholdExceeded(t *testing.T) {
 	board := CreateGameBoard(3) // 3x3 board --> min value is 1
-	expectedOutput := "Oops! The lowest allowed spot value for your move is 1!"
+	expectedOutput := "Oops! The lowest allowed spot value for your move is 0!"
 
 	// function invocation
-	isValid, output := IsUserInputValid(0, board) // 0 < 1: lower than min threshold!
+	isValid, output := IsUserInputValid(-1, board) // -1 < 0: lower than min threshold!
 
 	if isValid {
 		t.Errorf("Expected input should be false. actual: %t, expected: %t", isValid, false)
@@ -45,10 +45,10 @@ func TestIsUserInputValidMinThresholdExceeded(t *testing.T) {
 
 func TestIsUserInputValidMaxThresholdExceeded(t *testing.T) {
 	board := CreateGameBoard(5) // 5 x 5 board --> max value is 25
-	expectedOutput := "Oops! The highest allowed spot value for your move is 25!"
+	expectedOutput := "Oops! The highest allowed spot value for your move is 24!"
 
 	// function invocation
-	isValid, output := IsUserInputValid(26, board) // 26 > 25: exceeded max threshold!
+	isValid, output := IsUserInputValid(25, board) // 25 > 24 (5*5 -1): exceeded max threshold!
 
 	// result must not be valid
 	if isValid {

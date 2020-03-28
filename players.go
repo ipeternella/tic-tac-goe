@@ -22,8 +22,8 @@ func GetUserInput(stdIn io.Reader) string {
 func IsUserInputValid(fieldPosition int, board *Board) (bool, string) {
 
 	// board constraints
-	maxAllowedValue := len(board.fields) * len(board.fields) // assumes first field starts at 1
-	minAllowedValue := 1
+	maxAllowedValue := len(board.fields)*len(board.fields) - 1 // assumes first field starts at 0
+	minAllowedValue := 0
 
 	// outcomes
 	gameRejectionOutput := ""
