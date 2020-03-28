@@ -9,6 +9,10 @@ import (
 const (
 	BoardHorizontalSeparator string = "-"
 	BoardSize                int    = 3
+
+	Player1Mark string = "XX"
+	Player2Mark string = "OO"
+	QuitMark    string = "q"
 )
 
 // Logging configs
