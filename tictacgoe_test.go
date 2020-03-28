@@ -9,10 +9,10 @@ import (
 func TestCreateGameBoardShouldCreateInitializeBoardFields3x3(t *testing.T) {
 	boardSize := 4
 	expectedBoard := [][]string{
-		{"01", "02", "03", "04"},
-		{"05", "06", "07", "08"},
-		{"09", "10", "11", "12"},
-		{"13", "14", "15", "16"},
+		{"00", "01", "02", "03"},
+		{"04", "05", "06", "07"},
+		{"08", "09", "10", "11"},
+		{"12", "13", "14", "15"},
 	}
 
 	// function invocation
@@ -29,8 +29,8 @@ func TestCreateGameBoardShouldCreateInitializeBoardFields3x3(t *testing.T) {
 
 func TestPrivateGetRowStringBoard5x5(t *testing.T) {
 	gameBoard := CreateGameBoard(4)
-	expectedFirstRow := " 01 | 02 | 03 | 04 "
-	expectedLastRow := " 13 | 14 | 15 | 16 "
+	expectedFirstRow := " 00 | 01 | 02 | 03 "
+	expectedLastRow := " 12 | 13 | 14 | 15 "
 
 	firstRow := getRowString(gameBoard, 0)
 	lastRow := getRowString(gameBoard, len(gameBoard.fields)-1)

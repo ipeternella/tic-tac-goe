@@ -4,9 +4,10 @@ package tictacgoe
 
 import (
 	"fmt"
-	"github.com/rs/zerolog/log"
 	"strconv"
 	"strings"
+
+	"github.com/rs/zerolog/log"
 )
 
 type Board struct {
@@ -17,7 +18,7 @@ type Board struct {
 func CreateGameBoard(boardSize int) *Board {
 	log.Debug().Msgf("Creating a new game board with %d rows and cols...", boardSize)
 
-	k := 1
+	k := 0
 
 	// initializes slices
 	emptyBoard := make([][]string, boardSize)
