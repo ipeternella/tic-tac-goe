@@ -29,7 +29,14 @@ func StartGameLoop() {
 		}
 
 		userFieldPositionInput, _ := strconv.Atoi(rawUserInput)
-		gamelogic.UpdateGameState(settings.Player1Mark, userFieldPositionInput, gameBoard) // TODO: asserts game over
+		isValidMove, rejectionMsg := gamelogic.IsUserInputValid(userFieldPositionInput, gameBoard)
+
+		if isValidMove {
+			gamelogic.UpdateGameState(settings.Player1Mark, userFieldPositionInput, gameBoard) // TODO: asserts game over
+		} else {
+			DisplayScreenMessage(rejectionMsg, true)
+		}
+
 	}
 
 	DisplayScreenMessage(settings.ByeByeMsg, true)
