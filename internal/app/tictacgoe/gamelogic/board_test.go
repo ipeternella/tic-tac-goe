@@ -93,3 +93,22 @@ func TestGetBoardRowAndCol5x5(t *testing.T) {
 	}
 
 }
+
+// Asserts GetFieldValue returns the appropriate value from the board
+func TestGetFieldValue(t *testing.T) {
+	gameBoard := CreateGameBoard(3)
+
+	gameBoard.fields[0][1] = "IG"
+
+	value1 := GetFieldValue(0, gameBoard)
+	value2 := GetFieldValue(1, gameBoard)
+
+	if value1 != "00" {
+		t.Errorf("Unexpected value returned from board. actual: %s, expected: %s", value1, "00")
+	}
+
+	if value2 != "IG" {
+		t.Errorf("Unexpected value returned from board. actual: %s, expected: %s", value1, "IG")
+	}
+
+}

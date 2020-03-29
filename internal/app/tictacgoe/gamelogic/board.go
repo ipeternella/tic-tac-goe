@@ -92,6 +92,13 @@ func GetBoardRowAndCol(validatedFieldPosition int, board *Board) (int, int) {
 	return row, col
 }
 
+// Retrieves a value from the board given a field position. Field value must have
+func GetFieldValue(validatedFieldPosition int, board *Board) string {
+	row, col := GetBoardRowAndCol(validatedFieldPosition, board)
+
+	return board.fields[row][col]
+}
+
 // Updates the game state with a new player's mark at a given board position
 func UpdateGameState(playerMark string, validatedFieldPosition int, board *Board) {
 	row, col := GetBoardRowAndCol(validatedFieldPosition, board)
