@@ -15,7 +15,7 @@ func StartGameLoop() {
 
 	AskUserWithoutOptions(settings.WelcomeMsg, false)
 	AskUserWithoutOptions(fmt.Sprintf(settings.MatchAboutToStartMsg, settings.BoardSize, settings.BoardSize), false)
-	DisplayScreenMessage(settings.InitialBoardMsg, false)
+	DisplayScreenMessage(settings.InitialBoardMsg, true)
 	gameBoard := gamelogic.CreateGameBoard(settings.BoardSize)
 
 	// forever game loop
