@@ -1,11 +1,10 @@
 // Prints the game state to the players
-package repl
+package gamelogic
 
 import (
 	"fmt"
 	"time"
 
-	"github.com/IgooorGP/tic-tac-goe/internal/app/tictacgoe/gamelogic"
 	"github.com/IgooorGP/tic-tac-goe/internal/app/tictacgoe/settings"
 )
 
@@ -21,10 +20,10 @@ func DisplayScreenMessage(message string, newline bool) string {
 	return messageForStdOut
 }
 
-func DisplayBoardWithSpaces(board *gamelogic.Board) {
+func DisplayBoardWithSpaces(board *Board) {
 	time.Sleep(300 * time.Millisecond) // waits a little bit before writing board to screen buffer
 	DisplayScreenMessage("\n", false)
 
-	gamelogic.PrintBoard(board, settings.BoardHorizontalSeparator)
+	PrintBoard(board, settings.BoardHorizontalSeparator)
 	DisplayScreenMessage("\n", false)
 }

@@ -1,5 +1,5 @@
 // contains main game loop
-package repl
+package tictacgoe
 
 import (
 	"fmt"
@@ -11,17 +11,17 @@ import (
 )
 
 // Runs the game loop until the user wants to quit
-func StartGameLoop() {
+func Play() {
 
-	AskUserWithoutOptions(settings.WelcomeMsg, false)
-	AskUserWithoutOptions(fmt.Sprintf(settings.MatchAboutToStartMsg, settings.BoardSize, settings.BoardSize), false)
-	DisplayScreenMessage(settings.InitialBoardMsg, true)
+	gamelogic.AskUserWithoutOptions(settings.WelcomeMsg, false)
+	gamelogic.AskUserWithoutOptions(fmt.Sprintf(settings.MatchAboutToStartMsg, settings.BoardSize, settings.BoardSize), false)
+	gamelogic.DisplayScreenMessage(settings.InitialBoardMsg, true)
 	gameBoard := gamelogic.CreateGameBoard(settings.BoardSize)
 
 	// forever game loop
 	for {
-		DisplayBoardWithSpaces(gameBoard)
-		rawUserInput := AskUserWithoutOptions(settings.AskNextMoveMsg, false) // TODO: validate inputs
+		gamelogic.DisplayBoardWithSpaces(gameBoard)
+		rawUserInput := gamelogic.AskUserWithoutOptions(settings.AskNextMoveMsg, false) // TODO: validate inputs
 
 		// checks if user wants to quit
 		if rawUserInput == settings.QuitMark {
@@ -34,10 +34,10 @@ func StartGameLoop() {
 		if isValidMove {
 			gamelogic.UpdateGameState(settings.Player1Mark, userFieldPositionInput, gameBoard) // TODO: asserts game over
 		} else {
-			DisplayScreenMessage(rejectionMsg, true)
+			gamelogic.DisplayScreenMessage(rejectionMsg, true)
 		}
 
 	}
 
-	DisplayScreenMessage(settings.ByeByeMsg, true)
+	gamelogic.DisplayScreenMessage(settings.ByeByeMsg, true)
 }

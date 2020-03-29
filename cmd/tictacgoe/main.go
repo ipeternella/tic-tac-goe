@@ -1,8 +1,8 @@
-// Main entry-point of the game.
+// Main entry-point of the game with the game loop.
 package main
 
 import (
-	"github.com/IgooorGP/tic-tac-goe/internal/app/tictacgoe/repl"
+	"github.com/IgooorGP/tic-tac-goe/internal/app/tictacgoe"
 	"github.com/IgooorGP/tic-tac-goe/internal/app/tictacgoe/settings"
 
 	"github.com/rs/zerolog/log"
@@ -10,10 +10,9 @@ import (
 
 // Main game loop
 func main() {
-	// sets the application up
 	settings.SetupApplication()
-	log.Debug().Msgf("Starting the game...")
+	log.Debug().Msg("Starting the game...")
 
-	repl.StartGameLoop()
-	log.Debug().Msgf("Closing the game application...")
+	tictacgoe.Play()
+	log.Debug().Msg("Closing the game application...")
 }

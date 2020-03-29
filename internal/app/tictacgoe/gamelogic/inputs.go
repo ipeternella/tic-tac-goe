@@ -1,5 +1,5 @@
 // Reads user input
-package repl
+package gamelogic
 
 import (
 	"bufio"
