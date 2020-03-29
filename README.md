@@ -16,7 +16,11 @@
 
 A terminal Tic Tac Toe game implemented in GO to discover the language!
 
-## Terminal Example
+## Terminal Gameplay
+
+![Alt text](docs/gifs/tic_tac_goe_01.gif)
+
+## Board Examples
 
 The default board size is `3x3` but supports up to `9x9` boards!
 

@@ -21,7 +21,7 @@ var MatchAboutToStartMsg string = "Match's about to start in a %d x %d board. Pr
 
 // During the match
 var InitialBoardMsg string = "Here's a brand new board just for you..."
-var AskNextMoveMsg string = "Mark the field at the desired position with a number:"
+var AskNextMoveMsg string = "Mark the field at the desired position with a number: "
 
 // Rejection for play moves
 var RejectedtMoveBelowMinValueMsg string = "Oops! The lowest allowed spot value for your move is %d!"
