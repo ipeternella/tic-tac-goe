@@ -20,6 +20,7 @@ func Play() {
 
 	// forever game loop
 	for {
+
 		gamelogic.DisplayBoardWithSpaces(gameBoard)
 		rawUserInput := gamelogic.AskUserWithoutOptions(settings.AskNextMoveMsg, false) // TODO: validate inputs
 
