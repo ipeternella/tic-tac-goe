@@ -53,3 +53,48 @@ func TestIsUserInputValidForValidInput(t *testing.T) {
 		t.Errorf("Game output is different than expected. actual: %v, expected: %v", output, expectedOutput)
 	}
 }
+
+// Asserts field value has NO digits
+func TestHasNoDigits(t *testing.T) {
+	value := "IG"
+
+	hasDigits := HasDigits(value)
+
+	if hasDigits {
+		t.Errorf("Expected string NOT to have digits. actual: %t, expected: %t", hasDigits, false)
+	}
+}
+
+// Asserts field value has only digits
+func TestHasDigits(t *testing.T) {
+	hasDigits := HasDigits("00")
+
+	if !hasDigits {
+		t.Errorf("Expected string to have digits. actual: %t, expected: %t", hasDigits, true)
+	}
+
+	hasDigits = HasDigits("81")
+
+	if !hasDigits {
+		t.Errorf("Expected string to have digits. actual: %t, expected: %t", hasDigits, true)
+	}
+}
+
+func TestIsFieldPositionTaken(t *testing.T) {
+	gameBoard := CreateGameBoard(3)
+
+	gameBoard.fields[0][1] = "IG" // TAKEN by a player's mark!
+
+	isPositionTaken1 := IsFieldPositionTaken(0, gameBoard) // NOT TAKEN!
+	isPositionTaken2 := IsFieldPositionTaken(1, gameBoard) // TAKEN!
+
+	// something's wrong if this spot IS taken...
+	if isPositionTaken1 {
+		t.Errorf("Position taken assertion failed. actual: %t, expected: %t", isPositionTaken1, false)
+	}
+
+	// something's wrong if this spot is NOT taken...
+	if !isPositionTaken2 {
+		t.Errorf("Position taken assertion failed. actual: %t, expected: %t", isPositionTaken2, true)
+	}
+}
