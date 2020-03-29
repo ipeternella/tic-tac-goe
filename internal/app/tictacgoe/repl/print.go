@@ -10,12 +10,15 @@ import (
 )
 
 // Writes to terminal screen buffer
-func DisplayScreenMessage(message string, newline bool) {
+func DisplayScreenMessage(message string, newline bool) string {
+	messageForStdOut := message
+
 	if newline {
-		fmt.Println(message)
+		messageForStdOut += "\n"
 	}
 
-	fmt.Println(message)
+	fmt.Print(messageForStdOut)
+	return messageForStdOut
 }
 
 func DisplayBoardWithSpaces(board *gamelogic.Board) {
