@@ -40,17 +40,23 @@ func IsUserInputValid(fieldPosition int, board *Board) (bool, string) {
 	if fieldPosition < minAllowedValue {
 		gameRejectionOutput = fmt.Sprintf(settings.RejectedtMoveBelowMinValueMsg, minAllowedValue)
 		evaluationResult = false
+
+		return evaluationResult, gameRejectionOutput
 	}
 
 	if fieldPosition > maxAllowedValue {
 		gameRejectionOutput = fmt.Sprintf(settings.RejectedtMoveAboveMaxValueMsg, maxAllowedValue)
 		evaluationResult = false
+
+		return evaluationResult, gameRejectionOutput
 	}
 
 	// assertion if the spot is taken
 	if IsFieldPositionTaken(fieldPosition, board) {
 		gameRejectionOutput = fmt.Sprintf(settings.RejectedMoveFieldPositionTaken, fieldPosition)
 		evaluationResult = false
+
+		return evaluationResult, gameRejectionOutput
 	}
 
 	return evaluationResult, gameRejectionOutput
