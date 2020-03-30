@@ -34,15 +34,18 @@ func Play() {
 
 		// if the move is valid, update the board
 		if isValidMove {
+
+			// player's move
 			gamelogic.UpdateGameState(settings.Player1Mark, userFieldPositionInput, gameBoard)
+			if gamelogic.IsGameOver(settings.Player1Mark, userFieldPositionInput, gameBoard) {
+				break
+			}
 
-			// checks for game over
-			if gamelogic.IsGameOverDueToAVictory(userFieldPositionInput, gameBoard) {
-
-				gamelogic.DisplayBoardWithSpaces(gameBoard)
-				gamelogic.DisplayScreenMessage(settings.VictoryMsg, true)
-
-				break // break the game loop
+			// computer's move
+			computerFieldPosition := gamelogic.CalculateComputerMove(gameBoard)
+			gamelogic.UpdateGameState(settings.Player2Mark, computerFieldPosition, gameBoard)
+			if gamelogic.IsGameOver(settings.Player2Mark, computerFieldPosition, gameBoard) {
+				break
 			}
 
 		} else {
