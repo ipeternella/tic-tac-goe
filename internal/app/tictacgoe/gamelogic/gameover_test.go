@@ -50,6 +50,6 @@ func TestIsSliceFilledWithSinglePlayerMarkSliceTrueForSliceWithSingleMark(t *tes
 
 	// if returns false, then there's a problem!
 	if !result {
-		t.Errorf("Board slice check should be false. actual :%t, expected: %t", result, true)
+		t.Errorf("Board slice check should be true. actual :%t, expected: %t", result, true)
 	}
 }
