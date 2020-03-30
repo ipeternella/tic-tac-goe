@@ -29,7 +29,8 @@ const RejectedtMoveAboveMaxValueMsg string = "Oops! The highest allowed spot val
 const RejectedMoveFieldPositionTaken string = "Oops! That field position %d is already taken, try another one!"
 
 // Victory
-const VictoryMsg = "[WIN]: Congrats!!! player has won the match!"
+const VictoryMsg = "[WIN]: Congrats!!! %s player has won the match!!!"
+const TieMatchMsg = "[TIE]: Too bad... no one has won! Better luck next time!"
 
 // Exiting the match
 const ByeByeMsg string = "Thanks for Playing! Come again any time! The game will end in a few seconds..."
