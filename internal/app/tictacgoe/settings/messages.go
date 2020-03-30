@@ -28,5 +28,8 @@ const RejectedtMoveBelowMinValueMsg string = "Oops! The lowest allowed spot valu
 const RejectedtMoveAboveMaxValueMsg string = "Oops! The highest allowed spot value for your move is %d!"
 const RejectedMoveFieldPositionTaken string = "Oops! That field position %d is already taken, try another one!"
 
+// Victory
+const VictoryMsg = "[WIN]: Congrats!!! player has won the match!"
+
 // Exiting the match
 const ByeByeMsg string = "Thanks for Playing! Come again any time! The game will end in a few seconds..."

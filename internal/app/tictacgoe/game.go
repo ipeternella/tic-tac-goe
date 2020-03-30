@@ -22,7 +22,7 @@ func Play() {
 	for {
 
 		gamelogic.DisplayBoardWithSpaces(gameBoard)
-		rawUserInput := gamelogic.AskUserWithoutOptions(settings.AskNextMoveMsg, false) // TODO: validate inputs
+		rawUserInput := gamelogic.AskUserWithoutOptions(settings.AskNextMoveMsg, false)
 
 		// checks if user wants to quit
 		if rawUserInput == settings.QuitMark {
@@ -32,8 +32,19 @@ func Play() {
 		userFieldPositionInput, _ := strconv.Atoi(rawUserInput)
 		isValidMove, rejectionMsg := gamelogic.IsUserInputValid(userFieldPositionInput, gameBoard)
 
+		// if the move is valid, update the board
 		if isValidMove {
-			gamelogic.UpdateGameState(settings.Player1Mark, userFieldPositionInput, gameBoard) // TODO: asserts game over
+			gamelogic.UpdateGameState(settings.Player1Mark, userFieldPositionInput, gameBoard)
+
+			// checks for game over
+			if gamelogic.IsGameOverDueToAVictory(userFieldPositionInput, gameBoard) {
+
+				gamelogic.DisplayBoardWithSpaces(gameBoard)
+				gamelogic.DisplayScreenMessage(settings.VictoryMsg, true)
+
+				break // break the game loop
+			}
+
 		} else {
 			gamelogic.DisplayScreenMessage(rejectionMsg, true)
 		}
