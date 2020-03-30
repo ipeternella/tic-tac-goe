@@ -113,6 +113,7 @@ func TestGetFieldValue(t *testing.T) {
 
 }
 
+// Asserts only the desired board row is returned based on a row index
 func TestGetBoardRowSlice(t *testing.T) {
 	gameBoard := CreateGameBoard(5)
 	expectedRowSlice := []string{"20", "21", "22", "23", "24"}
@@ -126,6 +127,7 @@ func TestGetBoardRowSlice(t *testing.T) {
 	}
 }
 
+// Asserts only the desired board column is returned based on a col index
 func TestGetBoardColumnSlice(t *testing.T) {
 	gameBoard := CreateGameBoard(5)
 	expectedColumnSlice := []string{"04", "09", "14", "19", "24"} // last column
@@ -144,6 +146,22 @@ func TestGetBoardColumnSlice(t *testing.T) {
 	for i, val := range columnSlice2 {
 		if val != expectedColumnSlice2[i] {
 			t.Errorf("Unexpected element at column slice. actual: %s, expected: %s, index: %d", val, expectedColumnSlice2[i], i)
+		}
+	}
+}
+
+// Asserts only the desired board diagonal elements are returned based
+func TestGetBoardDiagonalSlice(t *testing.T) {
+	gameBoard := CreateGameBoard(4)
+	gameBoard.fields[1][1] = "IG" // has a player mark
+
+	expectedDiagonalSlice := []string{"00", "IG", "10", "15"}
+
+	diagonalSlice := GetBoardDiagonalSlice(gameBoard)
+
+	for i, val := range diagonalSlice {
+		if val != expectedDiagonalSlice[i] {
+			t.Errorf("Unexpected element at diagonal slice. actual: %s, expected: %s, index: %d", val, expectedDiagonalSlice[i], i)
 		}
 	}
 }

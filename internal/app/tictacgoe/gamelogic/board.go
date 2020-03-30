@@ -106,8 +106,34 @@ func UpdateGameState(playerMark string, validatedFieldPosition int, board *Board
 	board.fields[row][col] = playerMark
 }
 
-// Based on a row and col index, returns the whole row diagonal slice, if exists
-//func GetBoardDiagonalSlice(rowIndex int, columnIndex int, board *Board) []string {
+// Checks if a given element with a rowIndex and colIndex are on a diagonal of the board matrix
+func IsFieldPositionOnBoardDiagonal(rowIndex int, colIndex int) bool {
+	return rowIndex == colIndex
+}
+
+// Checks if a given element with a rowIndex and colIndex are on a REVERSE diagonal of the board matrix
+func IsFieldPositionOnBoardReverseDiagonal(rowIndex int, colIndex int, board *Board) bool {
+	boardSize := len(board.fields)
+
+	return rowIndex+colIndex == (boardSize - 1) // math relation that asserts that
+}
+
+// Based on a row and col index, returns the whole row diagonal slice, if row and col is
+// from a diagonal element. Otherwise, returns an empty string slice.
+func GetBoardDiagonalSlice(board *Board) []string {
+	diagonalSlice := make([]string, 0) // starts as an empty slice
+
+	// appends only diagonal elements from the board
+	for i := 0; i < len(board.fields); i++ {
+		diagonalSlice = append(diagonalSlice, board.fields[i][i])
+	}
+
+	return diagonalSlice
+}
+
+// Based on a row and col index, returns the whole REVERSE row diagonal slice, if row and col is
+// from a reverse diagonal element. Otherwise, returns an empty string slice.
+//func GetBoardReverseDiagonalSlice(rowIndex int, columnIndex int, board *Board) []string {
 //	//
 //}
 
