@@ -105,3 +105,25 @@ func UpdateGameState(playerMark string, validatedFieldPosition int, board *Board
 
 	board.fields[row][col] = playerMark
 }
+
+// Based on a row and col index, returns the whole row diagonal slice, if exists
+//func GetBoardDiagonalSlice(rowIndex int, columnIndex int, board *Board) []string {
+//	//
+//}
+
+// Based on a row index, returns the whole row slice from the board
+func GetBoardRowSlice(rowIndex int, board *Board) []string {
+	return board.fields[rowIndex]
+}
+
+// Based on a column index, returns each element from that column number on the board
+func GetBoardColumnSlice(colIndex int, board *Board) []string {
+	columnSlice := make([]string, 0) // empty slice of strings
+
+	// traverses each row of the 2D board fields getting the right col member
+	for _, row := range board.fields {
+		columnSlice = append(columnSlice, row[colIndex])
+	}
+
+	return columnSlice
+}

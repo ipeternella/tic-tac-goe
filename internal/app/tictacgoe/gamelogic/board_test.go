@@ -112,3 +112,38 @@ func TestGetFieldValue(t *testing.T) {
 	}
 
 }
+
+func TestGetBoardRowSlice(t *testing.T) {
+	gameBoard := CreateGameBoard(5)
+	expectedRowSlice := []string{"20", "21", "22", "23", "24"}
+
+	rowSlice := GetBoardRowSlice(4, gameBoard)
+
+	for i, val := range rowSlice {
+		if val != expectedRowSlice[i] {
+			t.Errorf("Unexpected element at row slice. actual: %s, expected: %s, index: %d", val, expectedRowSlice[i], i)
+		}
+	}
+}
+
+func TestGetBoardColumnSlice(t *testing.T) {
+	gameBoard := CreateGameBoard(5)
+	expectedColumnSlice := []string{"04", "09", "14", "19", "24"} // last column
+	expectedColumnSlice2 := []string{"02", "07", "12", "17", "22"}
+
+	columnSlice := GetBoardColumnSlice(4, gameBoard)
+
+	for i, val := range columnSlice {
+		if val != expectedColumnSlice[i] {
+			t.Errorf("Unexpected element at column slice. actual: %s, expected: %s, index: %d", val, expectedColumnSlice[i], i)
+		}
+	}
+
+	columnSlice2 := GetBoardColumnSlice(2, gameBoard)
+
+	for i, val := range columnSlice2 {
+		if val != expectedColumnSlice2[i] {
+			t.Errorf("Unexpected element at column slice. actual: %s, expected: %s, index: %d", val, expectedColumnSlice2[i], i)
+		}
+	}
+}
