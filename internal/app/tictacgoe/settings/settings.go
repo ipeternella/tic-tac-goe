@@ -10,8 +10,8 @@ const (
 	BoardHorizontalSeparator string = "-"
 	BoardSize                int    = 3
 
-	Player1Mark string = "XX"
-	Player2Mark string = "OO"
+	Player1Mark string = "HU"
+	Player2Mark string = "PC"
 	QuitMark    string = "q"
 )
 
