@@ -17,7 +17,7 @@ const WelcomeMsg string = `
 `
 
 // Before the match
-const MatchAboutToStartMsg string = "Match's about to start in a %d x %d board. Press ANY KEY when ready!"
+const MatchAboutToStartMsg string = "Match's about to start on a %d x %d board. Press ANY KEY when ready!"
 
 // During the match
 const InitialBoardMsg string = "Here's a brand new board just for you..."
