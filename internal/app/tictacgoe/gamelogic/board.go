@@ -11,7 +11,8 @@ import (
 )
 
 type Board struct {
-	fields [][]string
+	freeFields []int
+	fields     [][]string
 }
 
 // Creates a new game board of a given boardSize. Boards are square matrices.
@@ -40,8 +41,14 @@ func CreateGameBoard(boardSize int) *Board {
 		}
 	}
 
+	// free spots
+	freeFields := make([]int, 0)
+	for i := 0; i < boardSize*boardSize; i++ {
+		freeFields = append(freeFields, i)
+	}
+
 	log.Debug().Msgf("Initialized board. Returning board...")
-	return &Board{fields: emptyBoard}
+	return &Board{fields: emptyBoard, freeFields: freeFields}
 }
 
 // internal function used to print rows
@@ -102,8 +109,20 @@ func GetFieldValue(validatedFieldPosition int, board *Board) string {
 // Updates the game state with a new player's mark at a given board position
 func UpdateGameState(playerMark string, validatedFieldPosition int, board *Board) {
 	row, col := GetBoardRowAndCol(validatedFieldPosition, board)
+	takenFieldIndex := 0
 
+	// marks board with player mark
 	board.fields[row][col] = playerMark
+
+	// finds takenField index for removal
+	for i, val := range board.freeFields {
+		if val == validatedFieldPosition {
+			takenFieldIndex = i
+		}
+	}
+
+	// pops taken field from freeFields list
+	board.freeFields = append(board.freeFields[:takenFieldIndex], board.freeFields[takenFieldIndex+1:]...)
 }
 
 // Checks if a given element with a rowIndex and colIndex are on a diagonal of the board matrix
