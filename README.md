@@ -18,7 +18,7 @@ A terminal Tic Tac Toe game implemented in GO to discover the language!
 
 ## Terminal Gameplay
 
-![Alt text](docs/gifs/tic_tac_goe_01.gif)
+![Alt text](docs/gifs/tic_tac_goe_02.gif)
 
 ## Board Examples
 
