@@ -19,11 +19,31 @@ func IsSliceFilledWithSinglePlayerMark(line []string) bool {
 }
 
 // Evals the board to check for draws and wins/losses -- Naive implementation
-func IsGameOver(board *Board) bool {
-	// 1. Check for horizontal fills
-	// 2. Check for vertical fills (~ same logic)
-	// 3. Check for Diagonal 1 fills
-	// 4. Check for Diagonal 2 fills (~ same logic)
-	// logic will be the same, just will extract different slices from the board.fields!
-	return false
+func IsGameOverDueToAVictory(validatedFieldPosition int, board *Board) bool {
+	row, col := GetBoardRowAndCol(validatedFieldPosition, board)
+	relatedRowSlice := GetBoardRowSlice(row, board)
+	relatedColumnSlice := GetBoardColumnSlice(col, board)
+
+	// always check for a row or column-based victory
+	rowVictory := IsSliceFilledWithSinglePlayerMark(relatedRowSlice)
+	columnVictory := IsSliceFilledWithSinglePlayerMark(relatedColumnSlice)
+
+	// not every field position needs to trigger a diagonal/reverse diagonal scan
+	diagonalVictory := false
+	reverseDiagonalVictory := false
+
+	// if the row and col is on the board's diagonal, check for diagonal victory
+	if IsFieldPositionOnBoardDiagonal(row, col) {
+		relatedDiagonalSlice := GetBoardDiagonalSlice(board)
+		diagonalVictory = IsSliceFilledWithSinglePlayerMark(relatedDiagonalSlice)
+	}
+
+	// if the row and col is on the board's REVERSE diagonal, check for REVERSE diagonal victory
+	if IsFieldPositionOnBoardReverseDiagonal(row, col, board) {
+		relatedReverseDiagonalSlice := GetBoardReverseDiagonalSlice(board)
+		reverseDiagonalVictory = IsSliceFilledWithSinglePlayerMark(relatedReverseDiagonalSlice)
+	}
+
+	// one of them is enough for a victory!
+	return rowVictory || columnVictory || diagonalVictory || reverseDiagonalVictory
 }
