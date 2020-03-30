@@ -150,7 +150,7 @@ func TestGetBoardColumnSlice(t *testing.T) {
 	}
 }
 
-// Asserts only the desired board diagonal elements are returned based
+// Asserts only the desired board diagonal elements are returned
 func TestGetBoardDiagonalSlice(t *testing.T) {
 	gameBoard := CreateGameBoard(4)
 	gameBoard.fields[1][1] = "IG" // has a player mark
@@ -162,6 +162,38 @@ func TestGetBoardDiagonalSlice(t *testing.T) {
 	for i, val := range diagonalSlice {
 		if val != expectedDiagonalSlice[i] {
 			t.Errorf("Unexpected element at diagonal slice. actual: %s, expected: %s, index: %d", val, expectedDiagonalSlice[i], i)
+		}
+	}
+}
+
+// Asserts only the desired board reverse diagonal elements are returned on a 3x3 board
+func TestGetBoardReverseDiagonalSlice3x3(t *testing.T) {
+	gameBoard := CreateGameBoard(3)
+	gameBoard.fields[1][1] = "IG" // has a player mark
+
+	expectedReverseDiagonalSlice := []string{"02", "IG", "06"}
+
+	reverseDiagonalSlice := GetBoardReverseDiagonalSlice(gameBoard)
+
+	for i, val := range reverseDiagonalSlice {
+		if val != expectedReverseDiagonalSlice[i] {
+			t.Errorf("Unexpected element at diagonal slice. actual: %s, expected: %s, index: %d", val, expectedReverseDiagonalSlice[i], i)
+		}
+	}
+}
+
+// Asserts only the desired board reverse diagonal elements are returned on a 6x6 board
+func TestGetBoardReverseDiagonalSlice5x5(t *testing.T) {
+	gameBoard := CreateGameBoard(6)
+	gameBoard.fields[2][3] = "IG" // has a player mark
+
+	expectedReverseDiagonalSlice := []string{"05", "10", "IG", "20", "25", "30"} // expected reverse diagonal of 6x6 board
+
+	reverseDiagonalSlice := GetBoardReverseDiagonalSlice(gameBoard)
+
+	for i, val := range reverseDiagonalSlice {
+		if val != expectedReverseDiagonalSlice[i] {
+			t.Errorf("Unexpected element at diagonal slice. actual: %s, expected: %s, index: %d", val, expectedReverseDiagonalSlice[i], i)
 		}
 	}
 }

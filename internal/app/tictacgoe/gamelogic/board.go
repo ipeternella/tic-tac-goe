@@ -133,9 +133,23 @@ func GetBoardDiagonalSlice(board *Board) []string {
 
 // Based on a row and col index, returns the whole REVERSE row diagonal slice, if row and col is
 // from a reverse diagonal element. Otherwise, returns an empty string slice.
-//func GetBoardReverseDiagonalSlice(rowIndex int, columnIndex int, board *Board) []string {
-//	//
-//}
+func GetBoardReverseDiagonalSlice(board *Board) []string {
+	reverseDiagonalSlice := make([]string, 0) // starts as an empty slice
+
+	// appends only diagonal elements from the board
+	for i := 0; i < len(board.fields); i++ {
+
+		// naive approach
+		for j := 0; j < len(board.fields); j++ {
+
+			if IsFieldPositionOnBoardReverseDiagonal(i, j, board) {
+				reverseDiagonalSlice = append(reverseDiagonalSlice, board.fields[i][j])
+			}
+		}
+	}
+
+	return reverseDiagonalSlice
+}
 
 // Based on a row index, returns the whole row slice from the board
 func GetBoardRowSlice(rowIndex int, board *Board) []string {
